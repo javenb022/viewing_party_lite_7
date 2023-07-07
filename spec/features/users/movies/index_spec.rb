@@ -9,6 +9,8 @@ describe "User Movies Index Page" do
 
   it "should display movie details" do
     expect(page).to have_button("Return to Discover Page")
+    # expect(page).to have_content("20 Results")
+
     # title (As a link to the movie details page)
     # Vote Average of the movie
     # max 20 results 

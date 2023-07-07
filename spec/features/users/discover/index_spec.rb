@@ -16,11 +16,12 @@ describe "User Discover Index Page" do
   it "should take the user to the movies results page from the Discover Top Movies button" do 
     click_button "Discover Top Rated Movies"
     expect(page).to have_current_path("/users/#{@user_1.id}/movies")
+    expect(page).to have_content("Movie Results")
   end
 
   it "should take the user to the movies results page from the Search button" do
     # save_and_open_page
     click_button "Search"
-    # expect(page).to have_current_path("/users/#{@user_1.id}/movies")
+    expect(page).to have_content("Movie Results")
   end
 end
