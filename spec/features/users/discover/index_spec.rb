@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Discover Index Page" do
+describe "User Discover Index Page" do
   before :each do
     @user_1 = User.create!(name: "Simon", email: "simon@gmail.com")
 
