@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   # post "/users/:id/discover", to: "users#create"
   get "/users/:id/discover", to: "users/discover#index"
   get "/users/:id/movies", to: "users/movies#index"
-
+  post "/search", to: "search#search"
 end

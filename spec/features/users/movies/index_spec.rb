@@ -7,6 +7,10 @@ describe "User Movies Index Page" do
     visit "/users/#{@user_1.id}/movies"
   end
 
-  it "should display ways to discover movies" do
-    expect(page).to have_content("Discover Top Rated Movies")
+  it "should display movie details" do
+    expect(page).to have_button("Return to Discover Page")
+    # title (As a link to the movie details page)
+    # Vote Average of the movie
+    # max 20 results 
   end
+end
