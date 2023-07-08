@@ -7,7 +7,6 @@ class MovieService
     get_url("/3/search/movie?query=#{search}")
   end
 
-
   def get_url(url, params = {})
   response = conn.get(url, params)
   JSON.parse(response.body, symbolize_names: true)

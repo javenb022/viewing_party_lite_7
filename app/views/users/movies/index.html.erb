@@ -2,3 +2,6 @@
 <h2>Movie Results</h2>
 
 <p><%= button_to "Return to Discover Page", "/users/#{@user.id}/discover", method: :get %></p>
+
+<% @movies.each do |movie| %>
+  <%= movie[:title] %> <% movie[:vote] %>
