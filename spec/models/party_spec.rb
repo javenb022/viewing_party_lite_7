@@ -35,3 +35,4 @@ RSpec.describe Party do
     end
   end
 end
+  

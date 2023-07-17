@@ -1,5 +1,5 @@
 require "rails_helper"
-
+  
 RSpec.describe User do
   before :each do
     @user1 = User.create!(name: "Cody", email: "code@gmail.com")

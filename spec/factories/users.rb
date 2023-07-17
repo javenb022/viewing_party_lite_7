@@ -4,3 +4,4 @@ FactoryBot.define do
     email { Faker::Internet.email(name: name, separators: ["-"]) }
   end
 end
+  
