@@ -21,7 +21,15 @@ RSpec.describe "/", type: :feature do
       expect(current_path).to eq(new_user_path)
     end
 
-    it "I see a list of existing users which links to the their dashboard" do
+    it "users who are logged in can see a list of existing users which links to the their dashboard" do
+      user = User.create!(name: "Lauren", email: "lauren@gmail.com", password: "password1")
+
+      click_link "Log In"
+      fill_in "Email", with: "lauren@gmail.com"
+      fill_in "Password", with: "password1"
+      click_button "Log In"
+
+      visit root_path
       expect(page).to have_content("Existing Users")
 
       within "#user_#{@user_1.id}" do
@@ -33,6 +41,10 @@ RSpec.describe "/", type: :feature do
       within "#user_#{@user_3.id}" do
         expect(page).to have_content(@user_3.email)
       end
+    end
+
+    it "does not display a list of existing users to visitors who are not signed in" do
+      expect(page).to_not have_content("Existing Users")
     end
 
     it "I see a link (Home) that will take me back to the welcome page" do
