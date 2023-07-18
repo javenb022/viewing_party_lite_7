@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     user[:email] = user[:email].downcase
     new_user = User.new(user)
     if new_user.save
-      redirect_to user_path(user)
+      redirect_to user_path(new_user)
     else
       flash[:error] = "Invalid input"
       redirect_to new_user_path
@@ -48,6 +48,7 @@ class UsersController < ApplicationController
       render :login_form
     end
   end
+
   private
 
   def user_params

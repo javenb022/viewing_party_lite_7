@@ -61,7 +61,7 @@ RSpec.describe "/", type: :feature do
       expect(page).to have_content("Welcome, #{user.email}!")
     end
 
-    xit "will not allow users to log in with bad credentials" do
+    it "will not allow users to log in with bad credentials" do
       user = User.create!(name: "Lauren", email: "lauren@gmail.com", password: "password1")
       expect(page).to have_link("Log In")
       click_link "Log In"
