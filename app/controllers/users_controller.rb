@@ -42,11 +42,22 @@ class UsersController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:success] = "Welcome, #{user.email}!"
-      redirect_to user_path(user)
+        if user.admin? 
+          redirect_to admin_dashboard_path
+        elsif user.manager?
+          redirect_to root_path
+        else
+          redirect_to user_path(user)
+        end
     else 
       flash[:error] = "Invalid input"
       render :login_form
     end
+  end
+
+  def destroy
+    session[:user_id] = nil
+    redirect_to root_path
   end
 
   private

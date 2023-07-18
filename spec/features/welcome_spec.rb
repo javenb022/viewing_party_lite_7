@@ -74,8 +74,9 @@ RSpec.describe "/", type: :feature do
       expect(page).to have_content("Invalid input")
     end
 
-    it "will allows users to log out" do
+    it "allows users to log out" do
       user = User.create!(name: "Lauren", email: "lauren@gmail.com", password: "password1")
+
       click_link "Log In"
       fill_in "Email", with: "lauren@gmail.com"
       fill_in "Password", with: "password1"
