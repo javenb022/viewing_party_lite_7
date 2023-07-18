@@ -19,8 +19,8 @@ RSpec.describe "Creates a new User" do
       fill_in "Password", with: "password1"
       fill_in "Password confirmation", with: "password1"
       click_button "Register User"
-
-      expect(current_path).to eq("/users/#{User.all.last.id}")
+      @user = User.all.last
+      expect(current_path).to eq(user_path(@user))
     end
 
     it "gives an error if all fields aren't filled out" do
