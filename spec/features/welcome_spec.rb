@@ -73,5 +73,23 @@ RSpec.describe "/", type: :feature do
       expect(current_path).to eq("/login")
       expect(page).to have_content("Invalid input")
     end
+
+    it "allows users to log out" do
+      user = User.create!(name: "Lauren", email: "lauren@gmail.com", password: "password1")
+
+      click_link "Log In"
+      fill_in "Email", with: "lauren@gmail.com"
+      fill_in "Password", with: "password1"
+      click_button "Log In"
+
+      visit root_path
+      expect(page).to_not have_link("Log In")
+      expect(page).to_not have_button("Create a New User")
+      expect(page).to have_link("Log Out")
+      click_link "Log Out"
+
+      expect(current_path).to eq(root_path)
+      expect(page).to have_link("Log In")
+    end
   end
 end
