@@ -4,6 +4,9 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :email, uniqueness: true, presence: true
+  validates :password, presence: true
+
+  has_secure_password
 
   def hosted_parties
     parties.where(user_parties: { is_host: true })
@@ -17,3 +20,4 @@ class User < ApplicationRecord
     where.not(id: id)
   end
 end
+  

@@ -2,8 +2,8 @@ require "rails_helper"
 
 RSpec.describe Party do
   before(:each) do
-    @user1 = User.create!(name: "Cody", email: "code@gmail.com")
-    @user2 = User.create!(name: "Javen", email: "javenb022@gmail.com")
+    @user1 = User.create!(name: "Cody", email: "code@gmail.com", password: "password1")
+    @user2 = User.create!(name: "Javen", email: "javenb022@gmail.com", password: "password1")
 
     @party1 = Party.create!(movie_id: 1, duration: 120, date: "2021-07-06", start_time: "2021-07-06 12:00:00")
     @party2 = Party.create!(movie_id: 2, duration: 120, date: "2021-07-06", start_time: "2021-07-06 12:00:00")
@@ -35,3 +35,4 @@ RSpec.describe Party do
     end
   end
 end
+  

@@ -2,8 +2,8 @@ require "rails_helper"
 
 RSpec.describe User do
   before :each do
-    @user1 = User.create!(name: "Cody", email: "code@gmail.com")
-    @user2 = User.create!(name: "Javen", email: "javenb022@gmail.com")
+    @user1 = User.create!(name: "Cody", email: "code@gmail.com", password: "password1")
+    @user2 = User.create!(name: "Javen", email: "javenb022@gmail.com", password: "password1")
 
     @party1 = Party.create!(movie_id: 1, duration: 120, date: "2021-07-06", start_time: "2021-07-06 12:00:00")
     @party2 = Party.create!(movie_id: 2, duration: 120, date: "2021-07-06", start_time: "2021-07-06 12:00:00")
@@ -21,10 +21,16 @@ RSpec.describe User do
     it { should have_many(:parties).through(:user_parties) }
   end
 
+  describe "validations" do 
+    it {should validate_presence_of(:email)}
+    it {should validate_uniqueness_of(:email)}
+    it {should validate_presence_of(:password)}
+    it {should have_secure_password}
+  end
+
   describe "instance methods" do
     describe "#invited_parties" do
       it "returns all parties a user is invited to" do
-        # require 'pry'; binding.pry
         expect(@user1.invited_parties).to eq([@party2, @party3])
       end
     end
@@ -44,3 +50,4 @@ RSpec.describe User do
     end
   end
 end
+  
