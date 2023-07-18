@@ -52,7 +52,7 @@ RSpec.describe "/", type: :feature do
       click_button "Log In"
 
       visit root_path
-      save_and_open_page
+
       expect(page).to have_content("Existing Users")
       expect(page).to have_content(@user_1.email)
       expect(page).to have_content(@user_2.email)
@@ -118,6 +118,12 @@ RSpec.describe "/", type: :feature do
 
       expect(current_path).to eq(root_path)
       expect(page).to have_link("Log In")
+    end
+
+    it "does not allow vusitors who are not logged in to visit the /dashnoard page" do
+      visit "/dashboard"
+      expect(current_path).to eq(root_path)
+      expect(page).to have_content("You must be logged in to do that")
     end
   end
 end
