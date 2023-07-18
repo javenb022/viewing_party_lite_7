@@ -1,5 +1,5 @@
 require "rails_helper"
-
+  
 RSpec.describe "/users/:id", type: :feature do
   before(:each) do
     @user1 = create(:user)

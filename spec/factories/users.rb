@@ -5,3 +5,4 @@ FactoryBot.define do
     password { Faker::Hipster.word }
   end
 end
+  

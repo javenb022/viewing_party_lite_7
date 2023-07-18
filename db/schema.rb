@@ -44,3 +44,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_17_200218) do
   add_foreign_key "user_parties", "parties"
   add_foreign_key "user_parties", "users"
 end
+  

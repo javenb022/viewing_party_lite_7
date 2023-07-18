@@ -20,3 +20,4 @@ class User < ApplicationRecord
     where.not(id: id)
   end
 end
+  
