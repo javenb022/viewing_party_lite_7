@@ -6,9 +6,11 @@ class UsersController < ApplicationController
   end
   
   def create
-    @user = User.new(user_params)
-    if @user.save
-      redirect_to user_path(@user)
+    user = user_params
+    user[:email] = user[:email].downcase
+    new_user = User.new(user)
+    if new_user.save
+      redirect_to user_path(user)
     else
       flash[:error] = "Invalid input"
       redirect_to new_user_path
@@ -32,6 +34,20 @@ class UsersController < ApplicationController
     @facade = MovieFacade
   end
 
+  def login_form 
+  end
+  
+  def login_user
+    user = User.find_by(email: params[:email])
+    if user.authenticate(params[:password])
+      session[:user_id] = user.id
+      flash[:success] = "Welcome, #{user.email}!"
+      redirect_to user_path(user)
+    else 
+      flash[:error] = "Invalid input"
+      render :login_form
+    end
+  end
   private
 
   def user_params

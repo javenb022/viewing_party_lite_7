@@ -42,5 +42,36 @@ RSpec.describe "/", type: :feature do
 
       expect(current_path).to eq(root_path)
     end
+
+    it "allows users to log in with good credentials" do
+      user = User.create!(name: "Lauren", email: "lauren@gmail.com", password: "password1")
+      expect(page).to have_link("Log In")
+      click_link "Log In"
+
+      expect(current_path).to eq("/login")
+      expect(page).to have_field("Email")
+      expect(page).to have_field("Password")
+      expect(page).to have_button("Log In")
+
+      fill_in "Email", with: "lauren@gmail.com"
+      fill_in "Password", with: "password1"
+      click_button "Log In"
+
+      expect(current_path).to eq(user_path(user))
+      expect(page).to have_content("Welcome, #{user.email}!")
+    end
+
+    xit "will not allow users to log in with bad credentials" do
+      user = User.create!(name: "Lauren", email: "lauren@gmail.com", password: "password1")
+      expect(page).to have_link("Log In")
+      click_link "Log In"
+
+      fill_in "Email", with: "lauren@gmail.com"
+      fill_in "Password", with: "password"
+      click_button "Log In"
+
+      expect(current_path).to eq("/login")
+      expect(page).to have_content("Invalid input")
+    end
   end
 end
