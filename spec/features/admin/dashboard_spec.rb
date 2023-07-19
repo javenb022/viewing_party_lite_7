@@ -23,6 +23,8 @@ describe "admin dashboard" do
 
   it "takes me to the admin users dashboard when I click an email address and I see the same dashboard that user would see" do
     click_link "#{@user1.email}"
+    expect(current_path).to eq("/admin/users/#{@user1.id}")
+
     expect(page).to have_content("#{@user1.name}'s Dashboard")
     expect(page).to have_button("Discover Movies")
     expect(page).to have_content("Parties Hosting")

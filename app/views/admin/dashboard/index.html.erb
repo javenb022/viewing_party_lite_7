@@ -1,5 +1,5 @@
 <h1>User Email Addresses:</h1>
 
 <% @users.each do |user| %>
-  <li><%= user.email %></li>
+  <li id="user_<%= user.id %>"><%= link_to user.email, "/admin/users/#{user.id}" %></li>
 <% end %>

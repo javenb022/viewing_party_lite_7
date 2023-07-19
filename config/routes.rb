@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get "/logout", to: "users#destroy"
   delete "/logout", to: "users#destroy"
   get "/dashboard", to: "dashboard#index"
+  get "/admin/users/:id", to: "admin/users#show"
 
   get "register", to: "users#new", as: :new_user
   resources :users, only: [:create, :show] do
