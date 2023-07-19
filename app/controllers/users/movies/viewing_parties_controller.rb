@@ -7,7 +7,6 @@ module Users
           @facade = MovieFacade.new(params[:movie_id])
           @users = User.other_users(@user.id)
         else 
-          # require 'pry'; binding.pry
           flash[:error] = "You must be logged in to do that"
           redirect_to user_movie_path(params[:user_id], params[:movie_id])
         end 
