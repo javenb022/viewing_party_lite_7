@@ -11,6 +11,11 @@ RSpec.describe "/users/:id/movies/:id/viewing_party/new", type: :feature do
 
   describe "When I visit the new viewing party page", :vcr do
     it "I see the name of the movie title and movie duration" do
+      visit "/login"
+      fill_in "Email", with: @user1.email
+      fill_in "Password", with: @user1.password
+      click_button "Log In"
+
       visit new_user_movie_viewing_party_path(@user1, 155)
       expect(page).to have_content("Create a Viewing Party for #{@movie.movie_title}")
       expect(page).to have_content("Duration of Party")
@@ -19,6 +24,11 @@ RSpec.describe "/users/:id/movies/:id/viewing_party/new", type: :feature do
 
   describe "I see a form to create a new Viewing Party", :vcr do
     it "When a user fills out all fields in the form and clicks submit a new viewing party is created" do
+      visit "/login"
+      fill_in "Email", with: @user1.email
+      fill_in "Password", with: @user1.password
+      click_button "Log In"
+      
       visit new_user_movie_viewing_party_path(@user1, 155)
 
       fill_in :duration, with: 300
@@ -34,6 +44,11 @@ RSpec.describe "/users/:id/movies/:id/viewing_party/new", type: :feature do
 
   describe "If a user does not fill out the entire form", :vcr do
     it "The user does not fill out the date an error message displays" do
+      visit "/login"
+      fill_in "Email", with: @user1.email
+      fill_in "Password", with: @user1.password
+      click_button "Log In"
+
       visit new_user_movie_viewing_party_path(@user1, 155)
 
       check @user2.name.to_s
@@ -45,6 +60,11 @@ RSpec.describe "/users/:id/movies/:id/viewing_party/new", type: :feature do
     end
 
     it "The user does not fill out the time an error message displays" do
+      visit "/login"
+      fill_in "Email", with: @user1.email
+      fill_in "Password", with: @user1.password
+      click_button "Log In"
+      
       visit new_user_movie_viewing_party_path(@user1, 155)
 
       fill_in :duration, with: 250
