@@ -68,5 +68,19 @@ RSpec.describe "user/movies/index.html" do
         expect(current_path).to eq("/users/#{@user1.id}/movies/155")
       end
     end
+
+    describe "When a visitor goes to a movie show page" do
+      describe "and clicks the button to create a viewing party" do
+        it "redirects to the movie show page and displays an error message" do
+          top_movies = MoviesFacade.new.movies
+
+          visit user_movie_path(@user1, top_movies.first.id)
+          click_button "Create Viewing Party"
+
+          expect(current_path).to eq(user_movie_path(@user1, top_movies.first.id))
+          expect(page).to have_content("You must be logged in to do that")
+        end
+      end
+    end
   end
 end
